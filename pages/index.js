@@ -1,10 +1,8 @@
-import {Headder} from '../component/Headder'
-import {Main} from '../component/main'
+import { Login } from '../component/Login'
 
 function HomePage() {
     return <div style={{margin:'none'}}>
-          <Headder />
-          <Main/>
+          <Login />
       </div>
   }
   

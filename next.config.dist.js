@@ -9,11 +9,11 @@ module.exports = {
         return [
             {
                 source: '/login/:path*',
-                destination: 'http://localhost:3003/:path*',
+                destination: 'http://localhost:3002/:path*',
             },
             {
                 source: '/api/:path*',
-                destination: 'http://localhost:3002/:path*',
+                destination: 'http://localhost:3003/:path*',
             },
         ]
     },

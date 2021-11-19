@@ -1,0 +1,12 @@
+GET http://localhost:3004/sql/protected
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.Smlt._y1oRBNkA4Tz4Jbqe9EQD7WdlnD4QZIw1nWKN1df0mQ
+
+###
+
+POST http://localhost:3003/auth
+Content-Type: application/json
+
+ {
+ 	"username":"fana",
+ 	"password":"password"
+ }

@@ -1,13 +1,15 @@
-node_modules
-.cache
-.parcel-cache
-server_src/public
-.env
-.env.production
+.next
+
+frontend/node_modules
+frontend/.cache
+frontend/.parcel-cache
+frontend/server_src/public
+frontend/.env
+frontend/.env.production
 
 Api/conf/auth.json
 Api/conf/cors.json
 Api/conf/database.json
 
-.next
-config.dist.js
+frontend/.next
+frontend/config.dist.js

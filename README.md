@@ -1,4 +1,4 @@
-# Express-React-typescript-JWT-Go-Mysql
+# Nextjs+React+go
 
 ## Install dependencies
 

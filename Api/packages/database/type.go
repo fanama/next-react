@@ -7,3 +7,15 @@ type Configuration struct {
 	DbName     string `json:"DB_NAME"`
 	HostDb     string `json:"HOST_DB"`
 }
+
+type User struct {
+	ID       int
+	Name     string `gorm:"column:username"`
+	Password string `gorm:"column:password"`
+}
+
+type Role struct {
+	ID    int
+	Name  string `gorm:"column:nom"`
+	Order int    `gorm:"column:ordre"`
+}

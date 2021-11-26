@@ -14,3 +14,25 @@ func TestDatabase(t *testing.T) {
 	}
 
 }
+
+func TestCreateUser(t *testing.T) {
+
+	err := CreateUserTable()
+
+	if err != nil {
+		t.Errorf("erreur : %v", err.Error())
+
+	}
+
+}
+
+func TestCreateRole(t *testing.T) {
+
+	err := CreateRoleTable()
+
+	if err != nil {
+		t.Errorf("erreur : %v", err.Error())
+
+	}
+
+}

@@ -2,6 +2,7 @@ import {Headder} from '../component/Headder'
 import {Main} from '../component/main'
 import {useEffect} from 'react'
 import Router from 'next/router'
+import { Footer } from '../component/Footer'
 
 function HomePage() {
 
@@ -21,6 +22,7 @@ function HomePage() {
     return <div style={{margin:'none'}}>
           <Headder />
           <Main/>
+          <Footer/>
       </div>
   }
   

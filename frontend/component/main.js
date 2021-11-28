@@ -1,5 +1,6 @@
+
 export function Main() {
-    return <div style={{margin:"1em",backgroundColor:"rgba(0,0,0,0.2)",height:"100vh",padding:"1em"}}>
+    return <div style={{margin:"1em",backgroundColor:"rgba(0,0,0,0.2)",height:"max-content",padding:"1em"}}>
         
         <h2>Welcome to Next.js!</h2>
         

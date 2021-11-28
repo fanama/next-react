@@ -1,15 +1,20 @@
 package database
 
-func CreateUserTable() (err error) {
+import (
+	"github.com/fanama/next-react/Api/packages/database/types"
+	"gorm.io/gorm"
+)
 
-	err = DB.Table("users").AutoMigrate(&User{})
+func CreateUserTable(db *gorm.DB) (err error) {
+
+	err = db.Table("users").AutoMigrate(&types.User{})
 
 	return err
 }
 
-func CreateRoleTable() (err error) {
+func CreateRoleTable(db *gorm.DB) (err error) {
 
-	err = DB.Table("role_table").AutoMigrate(&Role{})
+	err = db.Table("role_table").AutoMigrate(&types.Role{})
 
 	return err
 }

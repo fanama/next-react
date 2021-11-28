@@ -3,13 +3,13 @@ package main
 import (
 	"fmt"
 
+	"github.com/fanama/next-react/Api/packages/auth"
+	_ "github.com/fanama/next-react/Api/packages/database"
+	"github.com/fanama/next-react/Api/packages/router"
+	"github.com/fanama/next-react/Api/packages/variablesCors"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	jwtware "github.com/gofiber/jwt/v2"
-	"gitlab.clirisgroup.com/templates/typescript-JWT/Api/packages/auth"
-	_ "gitlab.clirisgroup.com/templates/typescript-JWT/Api/packages/database"
-	"gitlab.clirisgroup.com/templates/typescript-JWT/Api/packages/router"
-	"gitlab.clirisgroup.com/templates/typescript-JWT/Api/packages/variablesCors"
 )
 
 func main() {

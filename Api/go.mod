@@ -1,11 +1,11 @@
-module gitlab.clirisgroup.com/templates/typescript-JWT/Api
+module github.com/fanama/next-react/Api
 
-go 1.17
+go 1.16
 
 require (
-	github.com/gofiber/fiber/v2 v2.20.2
+	github.com/gofiber/fiber/v2 v2.22.0
 	github.com/gofiber/jwt/v2 v2.2.7
 	github.com/golang-jwt/jwt v3.2.2+incompatible
-	gorm.io/driver/mysql v1.1.2
-	gorm.io/gorm v1.21.16
+	gorm.io/driver/mysql v1.2.0
+	gorm.io/gorm v1.22.3
 )

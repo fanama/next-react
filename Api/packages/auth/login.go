@@ -5,10 +5,11 @@ import (
 	"log"
 	"time"
 
+	"github.com/fanama/next-react/Api/packages/auth/types"
 	"github.com/golang-jwt/jwt"
 )
 
-func GenerateToken(user Form) map[string]string {
+func GenerateToken(user types.Form) map[string]string {
 
 	// Create token
 	token := jwt.New(jwt.SigningMethodHS256)
@@ -43,10 +44,10 @@ func GenerateToken(user Form) map[string]string {
 }
 
 // Call Login API
-func Login(user Form) (res LoginInfos, err error) {
+func Login(user types.Form) (res types.LoginInfos, err error) {
 
 	if user.Username == Conf.Username && user.Password == Conf.Password {
-		res = LoginInfos{Connect: true, IDUser: 0, AppId: 0, Role: "Admin"}
+		res = types.LoginInfos{Connect: true, IDUser: 0, AppId: 0, Role: "Admin"}
 		return res, nil
 
 	}

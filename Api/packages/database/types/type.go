@@ -1,4 +1,4 @@
-package database
+package types
 
 type Configuration struct {
 	UserDb     string `json:"USER_DB"`

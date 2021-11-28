@@ -2,11 +2,13 @@ package auth
 
 import (
 	"testing"
+
+	"github.com/fanama/next-react/Api/packages/auth/types"
 )
 
 func TestLogin(t *testing.T) {
 
-	var user Form = Form{Username: "fana", Password: "password", AppName: "RemoteSetup"}
+	var user types.Form = types.Form{Username: "fana", Password: "password", AppName: "RemoteSetup"}
 
 	res, err := Login(user)
 
@@ -23,7 +25,7 @@ func TestLogin(t *testing.T) {
 
 func TestLoginFail(t *testing.T) {
 
-	var user Form = Form{Username: "bidon", Password: "PSGjJ49E6", AppName: "TagTool"}
+	var user types.Form = types.Form{Username: "bidon", Password: "PSGjJ49E6", AppName: "TagTool"}
 
 	res, err := Login(user)
 

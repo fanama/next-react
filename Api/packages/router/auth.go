@@ -1,28 +1,22 @@
 package router
 
 import (
-	"encoding/json"
 	"fmt"
 
+	"github.com/fanama/next-react/Api/packages/auth"
+	"github.com/fanama/next-react/Api/packages/auth/types"
 	"github.com/gofiber/fiber/v2"
-	"gitlab.clirisgroup.com/templates/typescript-JWT/Api/packages/auth"
 )
 
 func Login(c *fiber.Ctx) error {
 
-	body := c.Body()
+	var formulaire types.Form
 
-	var formulaire auth.Form
-
-	err := json.Unmarshal(body, &formulaire)
-
-	fmt.Println("aaaaaa")
+	err := c.BodyParser(&formulaire)
 
 	if err != nil {
-		return c.SendStatus(500)
+		return c.Status(401).JSON(err)
 	}
-
-	fmt.Println(formulaire)
 
 	res, err := auth.Login(formulaire)
 

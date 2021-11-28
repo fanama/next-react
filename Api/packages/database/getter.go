@@ -1,8 +1,10 @@
 package database
 
-func GetTables() (tables []string, err error) {
+import "gorm.io/gorm"
 
-	err = DB.Table("information_schema.tables").Select("table_name").Find(&tables).Error
+func GetTables(db *gorm.DB) (tables []string, err error) {
+
+	err = db.Table("information_schema.tables").Select("table_name").Find(&tables).Error
 
 	return tables, err
 }

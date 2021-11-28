@@ -1,4 +1,4 @@
-package auth
+package types
 
 type Configuration struct {
 	JwtSecret    string `json:"JWT_SECRET"`

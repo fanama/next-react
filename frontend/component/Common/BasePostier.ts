@@ -50,7 +50,6 @@ class BasePostier {
             .post('/login/auth', {
                 username,
                 password,
-                appname: 'RemoteSetup',
             })
             .then((res) => {
                 setToken(res.data.AccessToken)

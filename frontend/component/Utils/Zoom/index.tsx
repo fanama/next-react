@@ -1,218 +1,148 @@
 import *as React from "react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { ZoomContext } from "./Context";
 import { Props, Position } from "./Types";
 
-export function Zoom({ image }: Props) {
+// const WIDTH=640;
+// const HEIGHT=480;
+const SCALE = 0.1;
+const MAXIMIZE = {
+  min : 0,
+  max: 8
+};
+const MINIMIZE = {
+  min : 0,
+  max: 0.25
+};
 
-  const [origin, setOrigin] = useState<Position>({
-    x: 0,
-    y: 0,
-    width: 1222,
-    height: 1222
-  });
-
-  const [destination, setDestination] = useState<Position>({
-    x: 0,
-    y: 0,
-    width: 500,
-    height: 500
-  });
-
-  useEffect(() => {
-    document.addEventListener('wheel',zoom)
+export function Zoom({ image , WIDTH, HEIGHT }) {
+      const containerRef = useRef<HTMLDivElement>();
+      const imgRef = useRef()
+      const svgRef = useRef()
+      const {rate, setRate} = useContext(ZoomContext);
+      const [imgStyle, setImgStyle] = useState<any>()
+      const [mouseDowmFlag, setMouseDowmFlag] = useState<boolean>(false);
+      const [mouseDowmPos, setMouseDowmPos] = useState<{ x: number; y: number }>({
+          x: 0,
+          y: 0,
+      });
 
 
-    return ()=>{
-      document.removeEventListener('wheel',zoom)
-    }
-  },[])
+      const [initial, setInitial] = useState<{ width: number; height: number }>({
+          width: WIDTH,
+          height: HEIGHT,
+      });
 
-  useEffect(() => {
-    const canvas: any = document.getElementById("canvas");
-    const ctx: any = canvas.getContext("2d");
-    const image = document.getElementById("video");
+      useEffect(() => {
+            const { width, height } = imgRef.current as HTMLImageElement;
+            setInitial({ width, height });
+    }, []);
 
-    // ctx.fillStyle = "white";
-    ctx.fillStyle = "green";
 
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+      useEffect(() => {
+        document.onmouseover = () => {
+            if (mouseDowmFlag) {
+                setMouseDowmFlag(false);
+            }
+        };
+        return () => {
+            document.onmouseover = null;
+        };
+    }, [mouseDowmFlag]);
 
-    ctx.drawImage(
-      image,
-      origin.x,
-      origin.y,
-      origin.width,
-      origin.height,
-      destination.x,
-      destination.y,
-      destination.width,
-      destination.height
-    );
-  }, [image,origin, destination]);
 
-  const reset = ()=>{
+      const handleWheelImage = (event) => {
+        console.log(event.deltaY)
+            const bigger = event.deltaY > 0 ? -1 : 1;
+            const transformX = -initial.width / 2;
+            const transformY = -initial.height / 2;
+            if (bigger > MAXIMIZE.min && rate < MAXIMIZE.max) {
+                const enlargeRate = rate + SCALE;
+                setImgStyle({
+                    ...imgStyle,
+                    transform: `matrix(${enlargeRate}, 0, 0, ${enlargeRate}, ${transformX}, ${transformY}) `,
+                });
+                setRate(enlargeRate);
+            } else if (bigger < MINIMIZE.min && rate > MINIMIZE.max) {
+                const shrinkRate = rate - SCALE;
+                setImgStyle({
+                    ...imgStyle,
+                    transform: `matrix(${shrinkRate}, 0, 0, ${shrinkRate}, ${transformX}, ${transformY}) `,
+                });
+                setRate(shrinkRate);
+            }
+    };
 
-    const canvas:any = document.getElementById('canvas')
+    const handleMouseDown = (event) => {
+        const { clientX, clientY } = event;
+        event.stopPropagation();
+        event.preventDefault();
+        setMouseDowmFlag(true);
+        setMouseDowmPos({
+            x: clientX,
+            y: clientY,
+        });
+    };
 
-    setOrigin(o=>{return{
-      x:0,
-      y:0,
-      width:canvas.width,
-      height:canvas.height
-    }})
-  }
+    const handleMouseMove = (event) => {
+      event.stopPropagation();
+      event.preventDefault();
+      const { clientX, clientY } = event;
+          const diffX = clientX - mouseDowmPos.x;
+          const diffY = clientY - mouseDowmPos.y;
+          if (!mouseDowmFlag || (diffX === 0 && diffY === 0)) return;
+          const { offsetLeft, offsetTop } = imgRef.current as HTMLImageElement;
+          const offsetX = parseInt(`${diffX + offsetLeft}`, 10);
+          const offsetY = parseInt(`${diffY + offsetTop}`, 10);
+          setMouseDowmPos({
+              x: clientX,
+              y: clientY,
+          });
+          setImgStyle({
+              ...imgStyle,
+              left: offsetX,
+              top: offsetY,
+          });
 
-  const zoom = (e:any)=>{
-
-    // e.PreventDefault
-
-    const canvas:any = document.getElementById('canvas')
-
-    const change = canvas.width/5
-
-    if(e.deltaY >0){
-      // up
-
-      setOrigin(o=>{
-
-        return { 
-          x: o.x,
-          y: o.y,
-          width:o.width+change,
-          height:o.height+change
-        }
-      })
-
-    }else if(e.deltaY<0){
-      // down
-      setOrigin(o=>{
-      
-
-        return { 
-          x: o.x,
-          y: o.y,
-          width:o.width-change,
-          height:o.height-change
-        }
-      })
-
-    }
-  }
-
-  const changeDim = (e: any) => {
-    const id = e.target.id;
-
-    setOrigin((o) => {
-
-      let value = e.target.value
-      let ratio = o.width / o.height;
-
-      let width = o.width
-      let height = o.height;
-
-      if(id=="width" ){
-        width = value
-        height = width / ratio
-      }else if(id=="height"){
-        height = value
-        width = height * ratio
-      }
-
-      return {
-        x: id === "x" ? value : o.x,
-        y: id === "y" ? value : o.y,
-        width,
-        height
-      };
-    });
   };
 
-  const changeDest = (e: any) => {
-    const id = e.target.id;
+  const handleMouseUp = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    setMouseDowmFlag(false);
+};
 
-    setDestination((o) => {
-
-      let value = e.target.value
-      let ratio = o.width / o.height;
-
-      let width = o.width
-      let height = o.height;
-
-      if(id=="width" ){
-        width = value
-        height = width / ratio
-      }else if(id=="height"){
-        height = value
-        width = height * ratio
-      }
-
-      return {
-        x: id === "x" ? value : o.x,
-        y: id === "y" ? value : o.y,
-        width,
-        height
-      };
-    });
-  };
 
   return (
-    <div className="video-player">
+<div style={{height:HEIGHT+'px',width:WIDTH+'px'}} className="imgArea" ref={containerRef}>
+            
+            
+                <svg
+                    id="svg"
+                    width="640"
+                    height="360"
+                    className="coveringCanvas"
+                    onWheel={handleWheelImage}
+                    onMouseDown={handleMouseDown}
+                    onMouseMove={handleMouseMove}
+                    onMouseUp={handleMouseUp}
+                    ref={svgRef}
+                    style={imgStyle}
+                />
+            <img
+                src={image}
+                alt="part"
+                height={HEIGHT}
+                width={WIDTH}
+                style={imgStyle}
+                ref={imgRef}
+                id="zoom"
+            ></img>
 
-      <div className="outsideWrapper">
-        <img id="video" hidden src={image} alt="" />
-        <canvas
-          width="500"
-          height="500"
-          className="coveredImage"
-          style={{ border: "1px solid black" }}
-          id="canvas"
-        ></canvas>
-      </div>
+        </div>
 
-      
-      
-      <ButtonList origin={origin} changeDim={changeDim} reset={reset} />
-      {/* <ButtonList origin={destination} changeDim={changeDest} reset={reset} /> */}
-
-    </div>
       
   );
 }
 
-function ButtonList({origin,changeDim,reset}){
 
-  return <>
-  <input
-    id="y"
-    value={origin.y}
-    onChange={changeDim}
-    // orient={'vertical'}
-    type="range"
-    min="0"
-    max="1500"
-  />
-
-  <input
-    id="x"
-    value={origin.x}
-    onChange={changeDim}
-    type="range"
-    min="0"
-    max="1500"
-  />
-
-  <div className="info" >
-    <label>x:{origin.x}</label>
-    <label> y:{origin.y}</label>
-    <label>width:{origin.width}</label>
-    <label>height:{origin.height}</label>
-
-       
-        
-        
-  </div>
-
-  <button onClick={reset} >reset</button>
-</>
-
-}

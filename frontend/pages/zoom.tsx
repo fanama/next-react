@@ -4,6 +4,7 @@ import {useEffect} from 'react'
 import { Footer } from '../component/Footer'
 import { checkToken } from '../tools/redirection'
 import { Zoom } from '../component/Utils/Zoom'
+import { ZoomProvider } from '../component/Utils/Zoom/Context'
 
 function HomePage() {
 
@@ -16,8 +17,13 @@ function HomePage() {
           <Headder />
 
             <h2>Zoom</h2>
-
-          <Zoom image={"https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"} />
+        <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}} >
+            <ZoomProvider>
+                <Zoom image={"https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"} WIDTH={640} HEIGHT={480} />
+            </ZoomProvider>
+        
+        </div>
+          
           <Footer/>
       </div>
   }

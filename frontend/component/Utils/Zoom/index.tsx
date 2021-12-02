@@ -15,7 +15,7 @@ const MINIMIZE = {
   max: 0.25
 };
 
-export function Zoom({ image , WIDTH, HEIGHT }) {
+export function Zoom({ image , WIDTH, HEIGHT ,zoomLock }) {
       const containerRef = useRef<HTMLDivElement>();
       const imgRef = useRef()
       const svgRef = useRef()
@@ -53,6 +53,10 @@ export function Zoom({ image , WIDTH, HEIGHT }) {
 
       const handleWheelImage = (event) => {
         console.log(event.deltaY)
+        if (zoomLock){
+            return
+        }
+
             const bigger = event.deltaY > 0 ? -1 : 1;
             const transformX = -initial.width / 2;
             const transformY = -initial.height / 2;
@@ -87,6 +91,11 @@ export function Zoom({ image , WIDTH, HEIGHT }) {
     const handleMouseMove = (event) => {
       event.stopPropagation();
       event.preventDefault();
+
+      if (zoomLock){
+        return
+    }
+
       const { clientX, clientY } = event;
           const diffX = clientX - mouseDowmPos.x;
           const diffY = clientY - mouseDowmPos.y;

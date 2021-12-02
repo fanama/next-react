@@ -1,22 +1,3 @@
-.img-settings {
-    margin-top: 1em;
-
-    img {
-        cursor: pointer;
-    }
-
-    .img-actions,
-    .img-labels {
-        margin-left: 0.5em;
-        margin-right: 0.5em;
-    }
-}
-@keyframes rotate360 {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 .imgArea {
     position: relative;
     // height: 650px;
@@ -33,7 +14,7 @@
     }
 
     .coveringCanvas {
-        z-index: 2;
+        z-index: -100;
         cursor: move;
     }
 }

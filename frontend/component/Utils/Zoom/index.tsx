@@ -15,10 +15,9 @@ const MINIMIZE = {
   max: 0.25
 };
 
-export function Zoom({ image , WIDTH, HEIGHT ,zoomLock }) {
+export function Zoom({ image , WIDTH, HEIGHT ,zoomLock , svg }) {
       const containerRef = useRef<HTMLDivElement>();
       const imgRef = useRef()
-      const svgRef = useRef()
       const {rate, setRate} = useContext(ZoomContext);
       const [imgStyle, setImgStyle] = useState<any>()
       const [mouseDowmFlag, setMouseDowmFlag] = useState<boolean>(false);
@@ -123,21 +122,11 @@ export function Zoom({ image , WIDTH, HEIGHT ,zoomLock }) {
 
 
   return (
-<div style={{height:HEIGHT+'px',width:WIDTH+'px'}} className="imgArea" ref={containerRef}>
-            
-            
-                <svg
-                    id="svg"
-                    width="640"
-                    height="360"
-                    className="coveringCanvas"
-                    onWheel={handleWheelImage}
-                    onMouseDown={handleMouseDown}
-                    onMouseMove={handleMouseMove}
-                    onMouseUp={handleMouseUp}
-                    ref={svgRef}
-                    style={imgStyle}
-                />
+<div style={{height:HEIGHT+'px',width:WIDTH+'px'}} onWheel={handleWheelImage} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} className="imgArea" ref={containerRef}>
+
+    {/* Tags */}
+            {svg}
+
             <img
                 src={image}
                 alt="part"
@@ -146,7 +135,13 @@ export function Zoom({ image , WIDTH, HEIGHT ,zoomLock }) {
                 style={imgStyle}
                 ref={imgRef}
                 id="zoom"
+                
             ></img>
+
+            
+            
+                
+            
 
         </div>
 

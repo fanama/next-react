@@ -4,17 +4,7 @@ import (
 	"testing"
 )
 
-func TestInitDB(t *testing.T) {
-
-	_, err := InitMysqlDB()
-
-	if err != nil {
-		t.Errorf("error : %v", err)
-	}
-
-}
-
-func TestDatabase(t *testing.T) {
+func TestMysqlDatabase(t *testing.T) {
 
 	db, _ := InitMysqlDB()
 
@@ -27,7 +17,17 @@ func TestDatabase(t *testing.T) {
 
 }
 
-func TestCreateUser(t *testing.T) {
+func TestSqliteDatabase(t *testing.T) {
+
+	_, err := InitSqliteDB()
+
+	if err != nil {
+		t.Errorf("erreur : %v", err.Error())
+	}
+
+}
+
+func TestCreateUserTable(t *testing.T) {
 
 	db, _ := InitMysqlDB()
 
@@ -40,9 +40,9 @@ func TestCreateUser(t *testing.T) {
 
 }
 
-func TestCreateRole(t *testing.T) {
+func TestCreateRoleTable(t *testing.T) {
 
-	db, _ := InitMysqlDB()
+	db, _ := InitSqliteDB()
 
 	err := CreateRoleTable(&db)
 
@@ -50,5 +50,38 @@ func TestCreateRole(t *testing.T) {
 		t.Errorf("erreur : %v", err.Error())
 
 	}
+
+}
+
+func TestCreateTable(t *testing.T) {
+
+	db, _ := InitSqliteDB()
+
+	type User struct {
+		Id       int
+		Username string
+		Password string
+	}
+
+	err := CreateTable(&db, "users", User{})
+
+	if err != nil {
+		t.Errorf("C'ant create database : %v", err.Error())
+
+	}
+
+	tables, err := GetTables(&db)
+
+	if err != nil {
+		t.Errorf("can't get error : %v", err.Error())
+
+	}
+
+	if len(tables) <= 1 {
+		t.Errorf("erreur : %v", err.Error())
+
+	}
+
+	t.Errorf("erreur : %v", tables)
 
 }

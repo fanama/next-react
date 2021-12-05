@@ -1,7 +1,6 @@
 import *as React from "react";
 import { useContext, useEffect, useRef, useState } from "react";
 import { ZoomContext } from "./Context";
-import { Props, Position } from "./Types";
 
 // const WIDTH=640;
 // const HEIGHT=480;
@@ -52,7 +51,7 @@ export function Zoom({ image , WIDTH, HEIGHT ,zoomLock , svg }) {
 
       const handleWheelImage = (event) => {
         console.log(event.deltaY)
-        if (zoomLock){
+        if (!zoomLock){
             return
         }
 
@@ -91,7 +90,7 @@ export function Zoom({ image , WIDTH, HEIGHT ,zoomLock , svg }) {
       event.stopPropagation();
       event.preventDefault();
 
-      if (zoomLock){
+      if (!zoomLock){
         return
     }
 

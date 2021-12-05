@@ -18,6 +18,10 @@
 
 -   > go test -v ./path/to/package
 
+###  - test d'une fonction
+
+-   > go test -v ./path/to/package  -run function
+
 ### - clean cache
 
 -   > go clean -testcache

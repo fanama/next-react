@@ -10,12 +10,12 @@ type Configuration struct {
 
 type User struct {
 	ID       int
-	Name     string `gorm:"column:username"`
+	Name     string `gorm:"column:username;unique"`
 	Password string `gorm:"column:password"`
 }
 
 type Role struct {
 	ID    int
-	Name  string `gorm:"column:nom"`
-	Order int    `gorm:"column:ordre"`
+	Name  string `gorm:"column:nom;unique"`
+	Order int    `gorm:"column:ordre:unique"`
 }

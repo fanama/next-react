@@ -7,6 +7,7 @@ import (
 
 	"github.com/fanama/next-react/Api/packages/database/types"
 	"gorm.io/driver/mysql"
+	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
 
@@ -35,6 +36,15 @@ func InitMysqlDB() (address gorm.DB, err error) {
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local", conf.UserDb, conf.PasswordDb, conf.HostDb, conf.PortDb, conf.DbName)
 	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+
+	return *db, err
+}
+
+func InitSqliteDB() (address gorm.DB, err error) {
+
+	var db *gorm.DB
+
+	db, err = gorm.Open(sqlite.Open("gorm.db"), &gorm.Config{})
 
 	return *db, err
 }

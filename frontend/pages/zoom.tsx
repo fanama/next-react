@@ -8,7 +8,7 @@ import { ZoomProvider } from '../component/Utils/Zoom/Context'
 
 function HomePage() {
 
-    const [zoomLocked, setZoomLocked] = useState(true)
+    const [zoomLocked, setZoomLocked] = useState(false)
 
     useEffect(() => {
 
@@ -24,7 +24,10 @@ function HomePage() {
           <Headder />
 
             <h2>Zoom</h2>
-            <input type="checkbox"  className="zoom-locked" onClick={() => setZoomLocked(!zoomLocked)} />
+            <div>
+                <label> Zoom : </label>
+                <input type="checkbox"  className="zoom-locked" onClick={() => setZoomLocked(!zoomLocked)} />
+            </div>
         <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}} >
 
             <ZoomProvider>

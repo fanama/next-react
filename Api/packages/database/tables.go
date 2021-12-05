@@ -18,3 +18,11 @@ func CreateRoleTable(db *gorm.DB) (err error) {
 
 	return err
 }
+
+func CreateTable(db *gorm.DB, name string, schema interface{}) (err error) {
+
+	err = db.Table(name).AutoMigrate(&schema)
+
+	return err
+
+}

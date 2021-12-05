@@ -11,5 +11,8 @@ Api/conf/auth.json
 Api/conf/cors.json
 Api/conf/database.json
 
+Api/packages/database/*.db
+Api/*.db
+
 frontend/.next
 frontend/config.dist.js

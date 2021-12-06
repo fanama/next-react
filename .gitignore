@@ -6,6 +6,7 @@ frontend/.parcel-cache
 frontend/server_src/public
 frontend/.env
 frontend/.env.production
+frontend/prod-server.js
 
 Api/conf/auth.json
 Api/conf/cors.json

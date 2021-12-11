@@ -18,6 +18,7 @@ func TestGetUsers(t *testing.T) {
 
 	if len(users) == 0 {
 		t.Error("GetUsers() failed")
+		return
 	}
 
 	t.Log("GetUsers() success", users)

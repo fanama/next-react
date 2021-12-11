@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/fanama/next-react/Api/packages/auth"
 	_ "github.com/fanama/next-react/Api/packages/database"
@@ -13,11 +14,18 @@ import (
 )
 
 func main() {
+	config,err := variablesCors.InitConfig()
+
+	if err != nil {
+		log.Fatal(err)
+
+	}
+
 	app := fiber.New()
 
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: variablesCors.Cors.Origin,
-		AllowMethods: variablesCors.Cors.Methods,
+		AllowOrigins: config.Origin,
+		AllowMethods: config.Methods,
 	}))
 
 	app.Post("/auth", router.Login)
@@ -32,5 +40,5 @@ func main() {
 		return c.SendString("on est sur la route 2")
 	})
 
-	app.Listen(":" + variablesCors.Cors.Port)
+	app.Listen(":" + config.Port)
 }

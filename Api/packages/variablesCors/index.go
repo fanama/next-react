@@ -3,28 +3,28 @@ package variablesCors
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"os"
 )
 
-func init() {
+func InitConfig() (cors Configuration,err error) {
 
 	fmt.Println("ReadingFiles...")
 
 	file, err := os.Open("conf/cors.json")
-
 	if err != nil {
 		file, err = os.Open("../../conf/cors.json")
 	}
 	if err != nil {
-		return
+		return cors,err
 	}
 
 	defer file.Close()
 
 	decoder := json.NewDecoder(file)
-	err = decoder.Decode(&Cors)
+	err = decoder.Decode(&cors)
 	if err != nil {
-		log.Fatal(err)
+		return cors,err
 	}
+
+	return cors,err
 }

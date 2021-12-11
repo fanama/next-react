@@ -1,7 +1,7 @@
 package database
 
 import (
-	"github.com/fanama/next-react/Api/packages/database/types"
+	. "github.com/fanama/next-react/Api/packages/database/types"
 	"gorm.io/gorm"
 )
 
@@ -12,7 +12,7 @@ func GetTables(db *gorm.DB) (tables []string, err error) {
 	return tables, err
 }
 
-func GetUsers(db *gorm.DB) (users []types.User, err error) {
+func GetUsers(db *gorm.DB) (users []User, err error) {
 
 	err = db.Table("users").Find(&users).Error
 

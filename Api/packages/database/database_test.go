@@ -82,6 +82,7 @@ func TestCreateTable(t *testing.T) {
 
 	}
 
-	t.Errorf("erreur : %v", tables)
+	t.Logf("success : %v", tables)
 
 }
+

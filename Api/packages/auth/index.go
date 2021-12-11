@@ -2,25 +2,28 @@ package auth
 
 import (
 	"encoding/json"
-	"log"
 	"os"
+
+	. "github.com/fanama/next-react/Api/packages/auth/types"
 )
 
-func init() {
+func Init() (conf Configuration,err error) {
 	file, err := os.Open("conf/auth.json")
 
 	if err != nil {
 		file, err = os.Open("../../conf/auth.json")
 	}
 	if err != nil {
-		return
+		return conf,err
 	}
 
 	defer file.Close()
 
 	decoder := json.NewDecoder(file)
-	err = decoder.Decode(&Conf)
+	err = decoder.Decode(&conf)
 	if err != nil {
-		log.Fatal(err)
+		return conf,err
 	}
+
+	return conf,err
 }

@@ -8,6 +8,7 @@ import '../component/Headder/style.scss'
 
 import '../component/Utils/TableMaker/style.scss'
 import '../component/Utils/Zoom/style.scss'
-
+import '../component/Utils/Gauge/style.scss'
 
 export default App
+

@@ -3,7 +3,7 @@ import { Footer } from '../component/Footer'
 
 function HomePage() {
     return <div style={{margin:'none'}}>
-          <Login />
+	          <Login />
           <Footer />
 
       </div>

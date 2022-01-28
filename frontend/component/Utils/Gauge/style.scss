@@ -1,0 +1,170 @@
+:root {
+    --color-pannel:#092232;
+    --back-pannel:rgba($color: #ffff, $alpha: 1.0)
+}
+
+.Gauge-app {
+	display: grid;
+    margin: 1em;
+    // font-size: 1.5em;
+
+    .Meter {
+        text-align: center;
+        width: 100%;
+        max-width: 50%;
+        font-family: 'Roboto',sans-serif;
+        font-size: 3em;
+
+        .meter-body{
+            width: 100%;
+            height: 0;
+            padding-bottom: 50%;
+            background-color: rgba($color: #ffffff, $alpha: 0.5);
+            position: relative;
+            border-top-left-radius: 100% 200%;
+            border-top-right-radius: 100% 200%;
+            overflow: hidden;
+
+        }
+
+        .gauge_fill{
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: inherit;
+            height: 100%;
+            background-color: red;
+            transform-origin: center top;
+            transition: transform 0.2s ease-out;
+        }
+
+        .gauge_cover{
+            width: 75%;
+            height: 150%;
+            background-color: #092232;
+            position: absolute;
+            border-radius: 50% ;
+            top: 25%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+
+            .number {
+                font-size: 2rem;
+                font-weight: bold;
+
+            }
+
+            /* text */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 25%;
+            box-sizing: border-box;
+            font-size: 30%;
+            
+        }
+
+        //fin
+
+    }
+
+    .Meter-mobile {
+        text-align: center;
+        width: 100%;
+        max-width: 70%;
+        font-family: 'Roboto',sans-serif;
+        font-size: 4em;
+
+        .meter-body{
+            width: 100%;
+            height: 0;
+            padding-bottom: 50%;
+            background-color: rgba($color: #ffffff, $alpha: 0.5);
+            position: relative;
+            border-top-left-radius: 100% 200%;
+            border-top-right-radius: 100% 200%;
+            overflow: hidden;
+
+        }
+
+        .gauge_fill{
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: inherit;
+            height: 100%;
+            background-color: red;
+            transform-origin: center top;
+            transition: transform 0.2s ease-out;
+        }
+
+        .gauge_cover{
+            width: 75%;
+            height: 150%;
+            background-color: #092232;
+            position: absolute;
+            border-radius: 50% ;
+            top: 25%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+
+            .number {
+                font-size: 2em;
+                font-weight: bold;
+
+            }
+
+            /* text */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 25%;
+            box-sizing: border-box;
+            font-size: 15%;
+            
+        }
+
+        //fin
+
+    }
+
+    .data {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+
+        .data-element{
+            font-weight: bold;
+            text-align: center;
+            margin: 1em;
+            padding: 1em;
+            border-radius: 0.1em;
+            color: #092232;
+            background-color: rgba($color: #ffff, $alpha: 1.0);
+        }
+
+        .data-title{
+            font-weight: bold;
+            font-size: 1.2em;
+            text-align: center;
+            margin: 1em;
+            padding: 0.5em;
+            border-radius: 0.1em;
+            color: #092232;
+            background-color: rgba($color: #ffff, $alpha: 1.0);
+        }
+    }
+
+    .headder {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    
+    
+}

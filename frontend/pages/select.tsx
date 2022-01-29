@@ -3,9 +3,13 @@ import { Select } from '../component/Utils/Select'
 import { Option } from '../component/Utils/Select/Option'
 
 import { useState } from 'react'
+import { Headder } from '../component/Headder/Headder'
 
 function HomePage() {
-    const [selected, setSelected] = useState('0')
+    const [selected, setSelected] = useState({
+        value: '1',
+        label: 'Option 1',
+    })
 
     const options = [
         {
@@ -24,16 +28,19 @@ function HomePage() {
 
     return (
         <div style={{ margin: 'none' }}>
-            <h1>Select Box</h1>
-            <Select value={selected}>
+            <Headder />
+            <h2>Select Box</h2>
+            <Select value={selected} width="50%">
                 {options.map((option, index) => {
                     return (
-                        <Option key={index} value={option.value} setValue={setSelected}>
+                        <Option key={index} value={option} setValue={setSelected}>
                             {option.label}
                         </Option>
                     )
                 })}
             </Select>
+            <h2>value: {selected.value}</h2>
+
             <Footer />
         </div>
     )

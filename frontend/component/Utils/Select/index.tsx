@@ -1,20 +1,29 @@
 import * as React from 'react'
-import { selectStyle, valueStyle } from './style'
+import { optionBoxStyle, selectStyle, triangleUp, triangleDown, valueStyle } from './style'
 
-export function Select({ children, value }: any) {
+export function Select({ children, value, width, className }: any) {
     const [focus, setFocus] = React.useState<boolean>(false)
 
+    const props = {
+        width: width || '100%',
+    } as React.CSSProperties
+
     return (
-        <div style={{ ...selectStyle }}>
+        <div className={className || ''} style={{ ...selectStyle, ...props }}>
             <div
                 onClick={() => {
                     focus ? setFocus(false) : setFocus(true)
                 }}
                 style={valueStyle}
             >
-                {value[0]}
+                <label>{value.label}</label>
+                <div style={focus ? triangleUp : triangleDown}></div>
             </div>
-            {focus && <span onClick={() => setFocus(false)}>{children}</span>}
+            {focus && (
+                <span style={optionBoxStyle} onClick={() => setFocus(false)}>
+                    {children}
+                </span>
+            )}
         </div>
     )
 }

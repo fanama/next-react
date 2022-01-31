@@ -3,6 +3,16 @@ import { optionBoxStyle, selectStyle, triangleUp, triangleDown, valueStyle } fro
 
 export function Select({ children, value, width, className }: any) {
     const [focus, setFocus] = React.useState<boolean>(false)
+    const [keys, setKeys] = React.useState<string[]>([])
+
+    React.useEffect(() => {
+        if (value) {
+            console.log({ value })
+            const keys = Object.keys(value)
+            console.log({ keys })
+            setKeys(keys)
+        }
+    }, [value])
 
     const props = {
         width: width || '100%',
@@ -16,7 +26,7 @@ export function Select({ children, value, width, className }: any) {
                 }}
                 style={valueStyle}
             >
-                <label>{value.label}</label>
+                <label>{value[keys[0]]}</label>
                 <div style={focus ? triangleUp : triangleDown}></div>
             </div>
             {focus && (

@@ -14,6 +14,8 @@ export const valueStyle = {
 export const optionBoxStyle = {
     position: 'absolute',
     top: '100%',
+    maxHeight: '200px',
+    overflowY: 'scroll',
     left: '0',
     width: '100%',
     border: '1px solid #ccc',

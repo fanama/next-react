@@ -1,6 +1,6 @@
 {
     "name": "select-react-app",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "a select component for react",
     "main": "./lib/cjs/index.js",
     "module": "./lib/esm/index.js",

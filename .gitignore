@@ -5,6 +5,7 @@ frontend/.cache
 frontend/.parcel-cache
 frontend/server_src/public
 frontend/component/Utils/Select/node_modules
+frontend/component/Utils/TableMaker/node_modules
 frontend/.env
 frontend/.env.production
 frontend/prod-server.js

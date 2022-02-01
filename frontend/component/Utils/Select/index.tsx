@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { optionBoxStyle, selectStyle, triangleUp, triangleDown, valueStyle } from './style'
-
+import { Option } from './Option'
+export { Option }
 export function Select({ children, value, width, className }: any) {
     const [focus, setFocus] = React.useState<boolean>(false)
     const [keys, setKeys] = React.useState<string[]>([])

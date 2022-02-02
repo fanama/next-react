@@ -6,9 +6,10 @@ import { errorContainer, errorStyle } from './style'
 interface Props {
     listError: string[]
     setListError: Dispatch<SetStateAction<string[]>>
+    className?: string
 }
 
-export function Error({ listError, setListError }: Props): ReactElement {
+export function Error({ listError, setListError, className }: Props): ReactElement {
     const removeError = (error: string) => {
         let newList = [...listError]
         newList = newList.filter((err: string) => err !== error)
@@ -16,7 +17,7 @@ export function Error({ listError, setListError }: Props): ReactElement {
     }
 
     return (
-        <div style={errorContainer}>
+        <div className={className || ''} style={errorContainer}>
             {listError?.map((error) => {
                 return (
                     <div style={errorStyle} key={Math.random()}>

@@ -1,7 +1,5 @@
 import { Footer } from '../component/Footer'
-// import { Select, Option } from '../component/Utils/Select'
-import { Select } from '../component/Utils/Select'
-import { Option } from '../component/Utils/Select/Option'
+import { Select, Option } from 'select-react-app'
 
 import { useState } from 'react'
 import { Headder } from '../component/Headder/Headder'

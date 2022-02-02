@@ -10,6 +10,7 @@ exports.errorContainer = {
     display: 'flex',
     flexDirection: 'column',
     gap: '0.5em',
+    zIndex: '100',
 };
 exports.errorStyle = {
     position: 'relative',

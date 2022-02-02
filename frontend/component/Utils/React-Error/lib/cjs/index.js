@@ -33,13 +33,13 @@ var React = __importStar(require("react"));
 var message_1 = require("./message");
 var style_1 = require("./style");
 function Error(_a) {
-    var listError = _a.listError, setListError = _a.setListError;
+    var listError = _a.listError, setListError = _a.setListError, className = _a.className;
     var removeError = function (error) {
         var newList = __spreadArray([], listError, true);
         newList = newList.filter(function (err) { return err !== error; });
         setListError(newList);
     };
-    return (React.createElement("div", { style: style_1.errorContainer }, listError === null || listError === void 0 ? void 0 : listError.map(function (error) {
+    return (React.createElement("div", { className: className || '', style: style_1.errorContainer }, listError === null || listError === void 0 ? void 0 : listError.map(function (error) {
         return (React.createElement("div", { style: style_1.errorStyle, key: Math.random() },
             error,
             React.createElement(message_1.Message, { error: error, removeError: removeError })));

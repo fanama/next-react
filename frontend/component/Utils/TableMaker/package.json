@@ -1,6 +1,6 @@
 {
     "name": "tablemaker",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "automate the table creation in js",
     "main": "./lib/cjs/index.js",
     "scripts": {

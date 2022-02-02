@@ -1,24 +1,33 @@
-import * as React from 'react'
-import { hoverStyle, optionStyle } from './style'
+import * as React from "react";
+import { hoverStyle, optionStyle } from "./style";
 
-export const Option = ({ value, children, setValue }: any): JSX.Element => {
-    // hover state for option
-    const [hover, setHover] = React.useState(false)
-    return (
-        <option
-            style={{ ...optionStyle, ...(hover ? hoverStyle : {}) }}
-            value={value}
-            onClick={() => {
-                setValue(value)
-            }}
-            onMouseEnter={() => {
-                setHover(true)
-            }}
-            onMouseLeave={() => {
-                setHover(false)
-            }}
-        >
-            {children}
-        </option>
-    )
+export const Option = ({
+  value,
+  children,
+  setValue,
+  width,
+}: any): JSX.Element => {
+  const style = {
+    width: width || "fit-content",
+  } as React.CSSProperties;
+
+  // hover state for option
+  const [hover, setHover] = React.useState(false);
+  return (
+    <option
+      style={{ ...optionStyle, ...style, ...(hover ? hoverStyle : {}) }}
+      value={value}
+      onClick={() => {
+        setValue(value);
+      }}
+      onMouseEnter={() => {
+        setHover(true);
+      }}
+      onMouseLeave={() => {
+        setHover(false);
+      }}
+    >
+      {children}
+    </option>
+  );
 }

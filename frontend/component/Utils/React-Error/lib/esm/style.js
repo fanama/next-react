@@ -7,6 +7,7 @@ export var errorContainer = {
     display: 'flex',
     flexDirection: 'column',
     gap: '0.5em',
+    zIndex: '100',
 };
 export var errorStyle = {
     position: 'relative',

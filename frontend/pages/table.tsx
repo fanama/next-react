@@ -1,10 +1,9 @@
 import { Headder } from '../component/Headder/Headder'
-import { TableMaker } from '../component/Utils/TableMaker'
+import { TableMaker } from 'tablemaker'
 import { useEffect, useState } from 'react'
 import { Footer } from '../component/Footer'
 import { checkToken } from '../tools/redirection'
-import { Select } from '../component/Utils/Select'
-import { Option } from '../component/Utils/Select/Option'
+import { Select, Option } from 'select-react-app'
 
 function HomePage() {
     const [value, setValue] = useState({
@@ -42,4 +41,3 @@ function HomePage() {
 }
 
 export default HomePage
-

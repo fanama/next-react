@@ -22,10 +22,10 @@ export const optionBoxStyle = {
     borderTop: 'none',
     zIndex: '1',
     boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+    backgroundColor: 'rgba(255,255,255,0.8)',
 } as React.CSSProperties
 
 export const optionStyle = {
-    backgroundColor: 'rgba(255,255,255,0.8)',
     padding: '1em',
 } as React.CSSProperties
 

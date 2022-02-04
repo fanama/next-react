@@ -1,7 +1,8 @@
 import { ReactElement } from 'react';
 interface Props {
     error: string;
-    removeError: (error: string) => void;
+    action: (error: string) => void;
+    color?: string;
 }
-export declare function Message({ error, removeError }: Props): ReactElement;
+export declare function Message({ error, action, color }: Props): ReactElement;
 export {};

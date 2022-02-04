@@ -14,7 +14,7 @@ import { optionBoxStyle, selectStyle, triangleUp, triangleDown, valueStyle } fro
 import { Option } from './Option';
 export { Option };
 export function Select(_a) {
-    var children = _a.children, value = _a.value, width = _a.width, className = _a.className;
+    var children = _a.children, value = _a.value, width = _a.width, className = _a.className, color = _a.color, displayValue = _a.displayValue;
     var _b = React.useState(false), focus = _b[0], setFocus = _b[1];
     var _c = React.useState([]), keys = _c[0], setKeys = _c[1];
     React.useEffect(function () {
@@ -27,12 +27,13 @@ export function Select(_a) {
     }, [value]);
     var props = {
         width: width || '100%',
+        color: color || 'black',
     };
     return (React.createElement("div", { className: className || '', style: __assign(__assign({}, selectStyle), props) },
         React.createElement("div", { onClick: function () {
                 focus ? setFocus(false) : setFocus(true);
             }, style: valueStyle },
-            React.createElement("label", null, value[keys[0]]),
+            React.createElement("label", null, displayValue ? value[displayValue] : value[keys[0]]),
             React.createElement("div", { style: focus ? triangleUp : triangleDown })),
         focus && (React.createElement("span", { style: optionBoxStyle, onClick: function () { return setFocus(false); } }, children))));
 }

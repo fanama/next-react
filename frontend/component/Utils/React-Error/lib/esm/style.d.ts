@@ -5,7 +5,6 @@ export declare const crossStyle: {
     marginLeft: string;
     border: string;
     padding: string;
-    borderRadius: string;
 };
 export declare const hoverStyle: {
     background: string;

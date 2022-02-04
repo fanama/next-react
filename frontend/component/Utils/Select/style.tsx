@@ -8,7 +8,6 @@ export const valueStyle = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    overflowX: 'hidden',
 } as React.CSSProperties
 
 export const optionBoxStyle = {
@@ -16,6 +15,7 @@ export const optionBoxStyle = {
     top: '100%',
     maxHeight: '200px',
     overflowY: 'scroll',
+    overflowX: 'hidden',
     left: '0',
     width: '100%',
     border: '1px solid #ccc',
@@ -27,6 +27,7 @@ export const optionBoxStyle = {
 
 export const optionStyle = {
     padding: '1em',
+    width: '100%',
 } as React.CSSProperties
 
 export const hoverStyle = {

@@ -12,10 +12,14 @@ var __assign = (this && this.__assign) || function () {
 import * as React from 'react';
 import { hoverStyle, optionStyle } from './style';
 export var Option = function (_a) {
-    var value = _a.value, children = _a.children, setValue = _a.setValue;
+    var value = _a.value, children = _a.children, setValue = _a.setValue, width = _a.width, color = _a.color;
+    var style = {
+        width: width || '100%',
+        color: color || 'black',
+    };
     // hover state for option
     var _b = React.useState(false), hover = _b[0], setHover = _b[1];
-    return (React.createElement("option", { style: __assign(__assign({}, optionStyle), (hover ? hoverStyle : {})), value: value, onClick: function () {
+    return (React.createElement("option", { style: __assign(__assign(__assign({}, optionStyle), style), (hover ? hoverStyle : {})), value: value, onClick: function () {
             setValue(value);
         }, onMouseEnter: function () {
             setHover(true);

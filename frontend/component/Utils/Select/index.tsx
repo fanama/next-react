@@ -2,7 +2,7 @@ import * as React from 'react'
 import { optionBoxStyle, selectStyle, triangleUp, triangleDown, valueStyle } from './style'
 import { Option } from './Option'
 export { Option }
-export function Select({ children, value, width, className }: any) {
+export function Select({ children, value, width, className, color, displayValue }: any) {
     const [focus, setFocus] = React.useState<boolean>(false)
     const [keys, setKeys] = React.useState<string[]>([])
 
@@ -17,6 +17,7 @@ export function Select({ children, value, width, className }: any) {
 
     const props = {
         width: width || '100%',
+        color: color || 'black',
     } as React.CSSProperties
 
     return (
@@ -27,7 +28,7 @@ export function Select({ children, value, width, className }: any) {
                 }}
                 style={valueStyle}
             >
-                <label>{value[keys[0]]}</label>
+                <label>{displayValue ? value[displayValue] : value[keys[0]]}</label>
                 <div style={focus ? triangleUp : triangleDown}></div>
             </div>
             {focus && (

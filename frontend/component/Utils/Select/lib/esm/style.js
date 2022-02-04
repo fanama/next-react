@@ -7,23 +7,24 @@ export var valueStyle = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    overflowX: 'hidden',
 };
 export var optionBoxStyle = {
     position: 'absolute',
     top: '100%',
     maxHeight: '200px',
     overflowY: 'scroll',
+    overflowX: 'hidden',
     left: '0',
     width: '100%',
     border: '1px solid #ccc',
     borderTop: 'none',
     zIndex: '1',
     boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+    backgroundColor: 'rgba(255,255,255,0.8)',
 };
 export var optionStyle = {
-    backgroundColor: 'rgba(255,255,255,0.8)',
     padding: '1em',
+    width: '100%',
 };
 export var hoverStyle = {
     backgroundColor: 'lightgrey',
